@@ -4,7 +4,7 @@ const update = (game) => {
   game.fps = (1 / deltaTime) * 1000;
   //const framesPerUpdate = 20;
 
-  hero.update(keyState);
+  testPlayer.sprite.update(keyState);
 
   // if (game.frameCount % framesPerUpdate === 0) {
   //   
