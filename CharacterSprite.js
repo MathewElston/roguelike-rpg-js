@@ -68,6 +68,7 @@ CharacterSprite.prototype = {
         // Row =1 column =6 -> 8
         this.currentRow = 1;
         this.posX -= this.speedX;
+        //
       }
 
       // UP
