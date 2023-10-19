@@ -1,4 +1,3 @@
-
 const spritesheetA = new Image();
 spritesheetA.src = "./assets/spritesheet-large.png";
 const largeMultiplier = 3;
@@ -9,6 +8,8 @@ const attackSheet = new Image();
 attackSheet.src = "./assets/attacks/horizontal-slash1.png";
 const attackWidth = 48;
 const attackHeight = 48;
+let attackColumn = 0;
+let attackRow = 0;
 
 const game = {
   fps: 0,

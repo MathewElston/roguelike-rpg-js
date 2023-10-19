@@ -4,11 +4,11 @@ const update = (game) => {
   game.fps = (1 / deltaTime) * 1000;
   //const framesPerUpdate = 20;
 
-  testPlayer.sprite.update(keyState);
+  testPlayer.update(keyState);
 
   // if (game.frameCount % framesPerUpdate === 0) {
-  //   
-  //  
+  //
+  //
   // }
   // game.frameCount++;
   game.prevTime = now;

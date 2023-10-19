@@ -1,4 +1,4 @@
-function Sprite(
+function CharacterSprite(
   spriteSheet,
   posX,
   posY,
@@ -25,9 +25,10 @@ function Sprite(
   this.currentColumn = 6;
   this.currentRow = 0;
   this.animationSpeed = 0.1;
+  // 0 = down, 1 = up 2=left 3=right
 }
 
-Sprite.prototype = {
+CharacterSprite.prototype = {
   draw: function () {
     context.drawImage(
       this.spriteSheet,
@@ -44,8 +45,8 @@ Sprite.prototype = {
   update: function (keyState) {
     //console.log(this.posX);
     if ((keyState.value > 0) & (keyState.value < 16)) {
-      // RIGHT
       if (keyState.value & 1) {
+        // RIGHT
         this.currentRow = 2;
         console.log(
           "Crop Width: ",
@@ -95,7 +96,7 @@ Sprite.prototype = {
   },
 };
 
-const hero = new Sprite(
+const hero = new CharacterSprite(
   spritesheetA,
   100,
   100,
@@ -105,20 +106,6 @@ const hero = new Sprite(
   frameHeight,
   frameWidth,
   frameHeight,
-  canvas.width,
-  canvas.height
-);
-
-const attack = new Sprite(
-  attackSheet,
-  200,
-  200,
-  2,
-  2,
-  attackWidth,
-  attackHeight,
-  attackWidth,
-  attackHeight,
   canvas.width,
   canvas.height
 );
