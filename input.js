@@ -19,13 +19,21 @@ const input = (game) => {
 
   // LEFT
   if (keyState.value & 2) {
+    testPlayer.sprite.currentRow = 1;
+    testPlayer.sprite.posX -= testPlayer.sprite.speedX;
   }
 
   // UP
   if (keyState.value & 4) {
+    testPlayer.sprite.currentRow = 3;
+    game.spriteY--;
+    testPlayer.sprite.posY -= testPlayer.sprite.speedY;
   }
   // DOWN
   if (keyState.value & 8) {
+    testPlayer.sprite.currentRow = 0;
+    console.log(testPlayer.sprite.currentColumn);
+    testPlayer.sprite.posY += testPlayer.sprite.speedY;
   }
 
   // SPACE
