@@ -28,21 +28,22 @@ function AttackSprite(
 }
 
 AttackSprite.prototype = {
-  draw: function () {
+  draw: function (offsetX, offsetY) {
     context.drawImage(
       this.spriteSheet,
       this.cropWidth * Math.floor(this.currentColumn),
       this.cropHeight * Math.floor(this.currentRow),
       this.cropWidth,
       this.cropHeight,
-      this.parentSprite.posX + 50,
-      this.parentSprite.posY,
+      this.parentSprite.posX + offsetX,
+      this.parentSprite.posY + offsetY,
       this.width,
       this.height
     );
   },
   update: function () {
     this.currentColumn += this.animationSpeed;
+
     this.currentColumn =
       this.currentColumn > this.totalFrames ? 0 : this.currentColumn;
   },
@@ -61,7 +62,6 @@ const slash = new AttackSprite(
   canvas.width,
   canvas.height
 );
-
 slash.animationSpeed = 0.2;
 
 const slash2 = new AttackSprite(
