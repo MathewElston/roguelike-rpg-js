@@ -44,7 +44,7 @@ CharacterSprite.prototype = {
   },
   update: function (keyState) {
     //console.log(this.posX);
-    if ((keyState.value > 0) & (keyState.value < 16)) {
+    if (keyState.value > 0) {
       this.currentColumn += this.animationSpeed;
       this.currentColumn = this.currentColumn > 9 ? 6 : this.currentColumn;
     } else this.currentColumn = 7;

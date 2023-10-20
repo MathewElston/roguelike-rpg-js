@@ -14,8 +14,8 @@ Character.prototype = {
   },
   draw: function () {
     this.sprite.draw();
-    this.attack.draw();
+    this.isAttack ? this.attack.draw() : 0;
   },
 };
 
-const testPlayer = new Character(hero, slash, "Test", 10, 2);
+const testPlayer = new Character(hero, slash2, "Test", 10, 2);

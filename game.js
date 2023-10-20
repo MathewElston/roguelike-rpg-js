@@ -11,6 +11,9 @@ const attackHeight = 48;
 let attackColumn = 0;
 let attackRow = 0;
 
+const attackSheet2 = new Image();
+attackSheet2.src = "./assets/attacks/vertical-slash1.png";
+
 const game = {
   fps: 0,
   prevTime: Date.now(),

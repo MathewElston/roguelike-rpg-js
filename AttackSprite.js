@@ -63,3 +63,18 @@ const slash = new AttackSprite(
 );
 
 slash.animationSpeed = 0.2;
+
+const slash2 = new AttackSprite(
+  attackSheet2,
+  5,
+  hero,
+  2,
+  2,
+  attackWidth * 2,
+  attackHeight * 2,
+  attackWidth,
+  attackHeight,
+  canvas.width,
+  canvas.height
+);
+slash2.animationSpeed = 0.2;
