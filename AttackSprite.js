@@ -25,6 +25,7 @@ function AttackSprite(
   this.parentWidth = parentWidth;
   this.parentHeight = parentHeight;
   this.animationSpeed = 0.1;
+  this.isPlaying = false;
 }
 
 AttackSprite.prototype = {
@@ -44,8 +45,10 @@ AttackSprite.prototype = {
   update: function () {
     this.currentColumn += this.animationSpeed;
 
-    this.currentColumn =
-      this.currentColumn > this.totalFrames ? 0 : this.currentColumn;
+    if (this.currentColumn > this.totalFrames) {
+      this.currentColumn = 0;
+      this.isPlaying = false;
+    } else this.currentColumn = this.currentColumn;
   },
 };
 

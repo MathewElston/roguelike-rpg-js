@@ -32,9 +32,9 @@ const input = (game) => {
   }
 
   // SPACE
-  if (keyState.value & 16) {
-    testPlayer.isAttack = true;
-  } else {
-    testPlayer.isAttack = false;
-  }
-};
+  if (keyState.value & 16 && !testPlayer.isAttacking) {
+    // Start the attack animation
+    testPlayer.isAttacking = true;
+    testPlayer.attack.isPlaying = true;
+  } 
+}; 

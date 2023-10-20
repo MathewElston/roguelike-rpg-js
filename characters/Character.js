@@ -4,7 +4,7 @@ function Character(sprite, attack, name, health, attackPower) {
   this.health = health;
   this.attackPower = attackPower;
   this.attack = attack;
-  this.isAttack = false;
+  this.isAttacking = false;
   this.attackOffsetX = 0;
   this.attackOffsetY = 0;
 }
@@ -12,11 +12,17 @@ function Character(sprite, attack, name, health, attackPower) {
 Character.prototype = {
   update: function (keyState) {
     this.sprite.update(keyState);
-    this.attack.update();
+
+    if (this.isAttacking) {
+      this.attack.update();
+      if (!this.attack.isPlaying) {
+        this.isAttacking = false;
+      }
+    }
   },
   draw: function () {
     this.sprite.draw();
-    this.isAttack
+    this.isAttacking
       ? this.attack.draw(this.attackOffsetX, this.attackOffsetY)
       : 0;
   },
