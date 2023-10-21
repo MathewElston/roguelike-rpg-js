@@ -1,9 +1,10 @@
-function Character(sprite, attack, name, health, attackPower) {
+function Character(sprite, attackList, name, health, attackPower) {
   this.sprite = sprite;
   this.name = name;
   this.health = health;
   this.attackPower = attackPower;
-  this.attack = attack;
+  this.attackList = attackList;
+  this.attackIndex = 0;
   this.isAttacking = false;
   this.attackOffsetX = 0;
   this.attackOffsetY = 0;
@@ -14,8 +15,8 @@ Character.prototype = {
     this.sprite.update(keyState);
 
     if (this.isAttacking) {
-      this.attack.update();
-      if (!this.attack.isPlaying) {
+      this.attackList[this.attackIndex].update();
+      if (!this.attackList[this.attackIndex].isPlaying) {
         this.isAttacking = false;
       }
     }
@@ -23,9 +24,12 @@ Character.prototype = {
   draw: function () {
     this.sprite.draw();
     this.isAttacking
-      ? this.attack.draw(this.attackOffsetX, this.attackOffsetY)
+      ? this.attackList[this.attackIndex].draw(
+          this.attackOffsetX,
+          this.attackOffsetY
+        )
       : 0;
   },
 };
 
-const testPlayer = new Character(hero, slash2, "Test", 10, 2);
+const testPlayer = new Character(hero, comboAttack, "Test", 10, 2);

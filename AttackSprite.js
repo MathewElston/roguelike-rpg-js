@@ -81,3 +81,5 @@ const slash2 = new AttackSprite(
   canvas.height
 );
 slash2.animationSpeed = 0.2;
+
+const comboAttack = [slash2, slash2, slash];
