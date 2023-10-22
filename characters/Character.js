@@ -11,8 +11,8 @@ function Character(sprite, attackList, name, health, attackPower) {
 }
 
 Character.prototype = {
-  update: function (keyState) {
-    this.sprite.update(keyState);
+  update: function () {
+    this.sprite.update();
 
     if (this.isAttacking) {
       this.attackList[this.attackIndex].update();
@@ -23,13 +23,15 @@ Character.prototype = {
   },
   draw: function () {
     this.sprite.draw();
-    this.isAttacking
-      ? this.attackList[this.attackIndex].draw(
-          this.attackOffsetX,
-          this.attackOffsetY
-        )
-      : 0;
+    if (this.isAttacking) {
+      this.attackList[this.attackIndex].draw(
+        this.attackOffsetX,
+        this.attackOffsetY
+      );
+    }
   },
 };
 
 const testPlayer = new Character(hero, comboAttack, "Test", 10, 2);
+
+const testEnemy = new Character(goblin, comboAttack, "Goblin", 10, 2);

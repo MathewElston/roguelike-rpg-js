@@ -49,11 +49,11 @@ CharacterSprite.prototype = {
       this.height
     );
   },
-  update: function (keyState) {
+  update: function () {
+    console.log(this.posX);
     // -1 due to the nature of the sprite sheet. Idle animations sit in the middle of an animation.
     const firstColumn = this.idleColumn - 1;
     const lastColumn = firstColumn + this.totalFrames;
-
     if (this.isMoving) {
       this.currentColumn += this.animationSpeed;
       this.currentColumn =
@@ -69,6 +69,23 @@ const hero = new CharacterSprite(
   3,
   100,
   100,
+  3,
+  3,
+  frameWidth,
+  frameHeight,
+  frameWidth,
+  frameHeight,
+  canvas.width,
+  canvas.height
+);
+
+const goblin = new CharacterSprite(
+  spriteSheetB,
+  10,
+  4,
+  3,
+  200,
+  200,
   3,
   3,
   frameWidth,
