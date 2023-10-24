@@ -4,14 +4,7 @@ const update = (game) => {
   game.fps = (1 / deltaTime) * 1000;
   testPlayer.update(keyState);
 
-  enemyController.moveLeft();
-  if (testEnemy.sprite.posX < 0) {
-    enemyController.moveRight();
-  }
-  if (testEnemy > 1000) {
-    enemyController.moveLeft();
-  }
-
+  enemyController.moveChase(testPlayer);
   testEnemy.update();
 
   game.prevTime = now;

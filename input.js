@@ -26,7 +26,7 @@ const input = (game) => {
     testPlayer.sprite.isMoving = true;
     testPlayer.sprite.currentRow = 3;
     testPlayer.sprite.posY -= testPlayer.sprite.speedY;
-    testPlayer.attackOffsetX = 0;
+    testPlayer.attackOffsetX = -5;
     testPlayer.attackOffsetY = -50;
   }
   // DOWN

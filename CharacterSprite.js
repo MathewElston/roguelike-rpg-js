@@ -50,7 +50,6 @@ CharacterSprite.prototype = {
     );
   },
   update: function () {
-    console.log(this.posX);
     // -1 due to the nature of the sprite sheet. Idle animations sit in the middle of an animation.
     const firstColumn = this.idleColumn - 1;
     const lastColumn = firstColumn + this.totalFrames;
