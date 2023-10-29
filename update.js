@@ -5,6 +5,7 @@ const update = (game) => {
   testPlayer.update(keyState);
 
   enemyController.moveChase(testPlayer);
+
   testEnemy.update();
 
   game.prevTime = now;

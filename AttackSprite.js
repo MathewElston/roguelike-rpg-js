@@ -83,3 +83,35 @@ const slash2 = new AttackSprite(
 slash2.animationSpeed = 0.2;
 
 const comboAttack = [slash2, slash2, slash];
+
+const enemySlash = new AttackSprite(
+  attackSheet,
+  5,
+  goblin,
+  2,
+  2,
+  attackWidth * 2,
+  attackHeight * 2,
+  attackWidth,
+  attackHeight,
+  canvas.width,
+  canvas.height
+);
+enemySlash.animationSpeed = 0.2;
+
+const enemySlash2 = new AttackSprite(
+  attackSheet2,
+  5,
+  goblin,
+  2,
+  2,
+  attackWidth * 2,
+  attackHeight * 2,
+  attackWidth,
+  attackHeight,
+  canvas.width,
+  canvas.height
+);
+enemySlash2.animationSpeed = 0.2;
+
+const enemyComboAttack = [slash2, slash2, slash];

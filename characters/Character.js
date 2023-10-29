@@ -34,4 +34,4 @@ Character.prototype = {
 
 const testPlayer = new Character(hero, comboAttack, "Test", 10, 2);
 
-const testEnemy = new Character(goblin, comboAttack, "Goblin", 10, 2);
+const testEnemy = new Character(goblin, enemyComboAttack, "Goblin", 10, 2);
