@@ -25,8 +25,6 @@ Character.prototype = {
     this.sprite.draw();
     if (this.isAttacking) {
       this.attackList[this.attackIndex].draw(
-        this.attackOffsetX,
-        this.attackOffsetY
       );
     }
   },

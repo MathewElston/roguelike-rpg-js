@@ -1,6 +1,7 @@
 class TileMap {
   constructor(
     mapTiles,
+    hitBoxTiles,
     spriteSheet,
     width,
     height,
@@ -19,18 +20,41 @@ class TileMap {
     this.totalColumns = totalColumns;
     this.currentRow = 0;
     this.currentColumn = 0;
+    this.hitBoxTiles = hitBoxTiles;
+    this.hitBoxes = [];
   }
 
+  calculateHitboxes() {
+    this.hitBoxes = [];
+
+    for (let i = 0; i < this.hitBoxTiles.length; i++) {
+      let posX = Math.floor(i % totalMapColumnTiles) * this.cropWidth;
+      let posY = Math.floor(i / totalMapColumnTiles) * this.cropHeight;
+
+      if (this.hitBoxTiles[i]) {
+        this.hitBoxes.push({
+          position: {
+            x: posX,
+            y: posY,
+          },
+          width: this.width,
+          height: this.height,
+        });
+      }
+    }
+  }
   draw() {
     for (let i = 0; i < this.mapTiles.length; i++) {
       let mapValue = this.mapTiles[i];
+      let sourceX = this.cropWidth * (mapValue % this.totalColumns);
+      let sourceY = this.cropHeight * Math.floor(mapValue / this.totalColumns);
       let posX = Math.floor(i % totalMapColumnTiles) * this.cropWidth;
       let posY = Math.floor(i / totalMapColumnTiles) * this.cropHeight;
 
       context.drawImage(
         this.spriteSheet,
-        this.cropWidth * (mapValue % this.totalColumns),
-        this.cropHeight * (mapValue / this.totalColumns),
+        sourceX,
+        sourceY,
         this.cropWidth,
         this.cropHeight,
         posX,
@@ -40,10 +64,25 @@ class TileMap {
       );
     }
   }
+
+  drawHitBoxes() {
+    for (let i = 0; i < this.hitBoxes.length; i++) {
+      const hitBox = this.hitBoxes[i];
+      context.beginPath();
+      context.rect(
+        hitBox.position.x,
+        hitBox.position.y,
+        hitBox.width,
+        hitBox.height
+      );
+      context.stroke();
+    }
+  }
 }
 
 const map = new TileMap(
   mapValues,
+  mapHitBox,
   tileSheet,
   tileSize,
   tileSize,
@@ -52,3 +91,5 @@ const map = new TileMap(
   tileRows,
   tileColumns
 );
+
+map.calculateHitboxes();

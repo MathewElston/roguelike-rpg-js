@@ -1,50 +1,97 @@
 const input = (game) => {
   if (keyState.value === 0) {
     testPlayer.sprite.isMoving = false;
+    //testPlayer.sprite.velocity.set(0,0);
   }
   // RIGHT
   if (keyState.value & 1) {
     testPlayer.sprite.isMoving = true;
     testPlayer.sprite.currentRow = 2;
-    // row = 2 column = 6 ->8
-    testPlayer.sprite.posX += testPlayer.sprite.speedX;
-    testPlayer.attackOffsetX = 50;
-    testPlayer.attackOffsetY = 10;
+
+    const moveVector = new Vector(1,0);
+    moveVector.normalize();
+    moveVector.scale(testPlayer.sprite.speedX/game.fps);
+    testPlayer.sprite.acceleration.add(moveVector);
   }
 
   // LEFT
   if (keyState.value & 2) {
     testPlayer.sprite.isMoving = true;
     testPlayer.sprite.currentRow = 1;
-    testPlayer.sprite.posX -= testPlayer.sprite.speedX;
-    testPlayer.attackOffsetX = -60;
-    testPlayer.attackOffsetY = 10;
+
+    const moveVector = new Vector(-1,0);
+    moveVector.normalize();
+    moveVector.scale(testPlayer.sprite.speedX/game.fps);
+    testPlayer.sprite.acceleration.add(moveVector);
+  
   }
 
   // UP
   if (keyState.value & 4) {
     testPlayer.sprite.isMoving = true;
     testPlayer.sprite.currentRow = 3;
-    testPlayer.sprite.posY -= testPlayer.sprite.speedY;
-    testPlayer.attackOffsetX = -5;
-    testPlayer.attackOffsetY = -50;
+
+    const moveVector = new Vector(0,-1);
+    moveVector.normalize();
+    moveVector.scale(testPlayer.sprite.speedX/game.fps);
+    //collisionCasting(testPlayer.sprite, moveVector);
+    testPlayer.sprite.acceleration.add(moveVector);
+
   }
   // DOWN
   if (keyState.value & 8) {
     testPlayer.sprite.isMoving = true;
     testPlayer.sprite.currentRow = 0;
-    testPlayer.sprite.posY += testPlayer.sprite.speedY;
-    testPlayer.attackOffsetX = 5;
-    testPlayer.attackOffsetY = 85;
-  }
+    const destination = {
+      x: testPlayer.sprite.feetBox.position.x,
+      y: testPlayer.sprite.feetBox.position.y + testPlayer.sprite.speedY,
+    };
+    const checkHitBox = {
+      width: testPlayer.sprite.feetBox.width,
+      height: testPlayer.sprite.feetBox.height,
+      position: {
+        x: destination.x,
+        y: destination.y,
+      },
+    };
 
+    const moveVector = new Vector(0,1);
+    moveVector.normalize();
+    moveVector.scale(testPlayer.sprite.speedX/game.fps);
+    testPlayer.sprite.acceleration.add(moveVector);
+  }
+  
   // SPACE
   if (keyState.value & 16 && !testPlayer.isAttacking) {
+
+  }
+
+
+  // Mouse State
+  if (mouseState.position.x > testPlayer.sprite.location.x + testPlayer.sprite.width) {
+    testPlayer.sprite.currentRow = 2;
+    
+  } else if (mouseState.position.x < testPlayer.sprite.location.x - testPlayer.sprite.width) {
+    testPlayer.sprite.currentRow = 1;
+    
+  } else if    (mouseState.position.y < testPlayer.sprite.location.y) {
+    testPlayer.sprite.currentRow = 3;
+    
+  } else   if (mouseState.position.y > testPlayer.sprite.location.y) {
+    testPlayer.sprite.currentRow = 0;
+    
+  }
+
+  if (mouseState.mouseDown) {
     // Start the attack animation
     testPlayer.isAttacking = true;
+
     testPlayer.attackList[testPlayer.attackIndex].isPlaying = true;
 
     testPlayer.attackIndex =
-      (testPlayer.attackIndex + 1) % testPlayer.attackList.length;
+    (testPlayer.attackIndex + 1) % testPlayer.attackList.length;
+  } else if (mouseState.mouseUp) {
+    testPlayer.isAttacking = false;
+    testPlayer.attackList[testPlayer.attackIndex].isPlaying = false;
   }
 };

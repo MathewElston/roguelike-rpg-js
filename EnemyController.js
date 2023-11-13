@@ -1,4 +1,4 @@
-function EnemyController(enemy) {
+ function EnemyController(enemy) {
   this.enemy = enemy;
 }
 
