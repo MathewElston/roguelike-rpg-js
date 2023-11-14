@@ -76,6 +76,17 @@ class TileMap {
         hitBox.height
       );
       context.stroke();
+      context.strokeText(i, hitBox.position.x, hitBox.position.y + 50);
+      context.strokeText(
+        "X: " + hitBox.position.x,
+        hitBox.position.x,
+        hitBox.position.y + 25
+      );
+      context.strokeText(
+        "Y: " + hitBox.position.y,
+        hitBox.position.x + 50,
+        hitBox.position.y + 25
+      );
     }
   }
 }

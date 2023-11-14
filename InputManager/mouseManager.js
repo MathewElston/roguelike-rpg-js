@@ -19,8 +19,8 @@ const doMouseDown = (e) => {
 
 const doMouseMove = (e) => {
   const rect = canvas.getBoundingClientRect();
-  mouseState.position.x = e.clientX - rect.left - 10;
-  mouseState.position.y = e.clientY - rect.top - 10;
+  mouseState.position.x = e.clientX - 10;
+  mouseState.position.y = e.clientY - 10;
 };
 
 canvas.addEventListener("mouseup", doMouseUp, true);

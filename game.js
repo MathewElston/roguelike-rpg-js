@@ -34,18 +34,19 @@ const mapValues = [
   30,31,31,31,31,31,31,31,31,31,31,31,31,31,31,35,
   40,41,41,41,41,41,41,41,41,41,41,41,41,41,41,45
 ]
+
+// prettier-ignore
 const mapHitBox = [
   1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
   1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
   1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-  1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+  1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,
   1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
   1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
   1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
   1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
   1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-
-]
+];
 
 const tileSheet = new Image();
 tileSheet.src = "./assets/MapTiles/Dungeon_Tileset-Large.png";
@@ -61,15 +62,15 @@ const game = {
   prevTime: Date.now(),
   fiveSecondTime: Date.now(),
   frameCount: 0,
-  deltaFrame:1,
+  deltaFrame: 1,
   spriteX: 100,
   spriteY: 100,
   mapHitBox: {
     width: canvas.width,
-    height: Math.floor(canvas.height/tileRows),
+    height: Math.floor(canvas.height / tileRows),
     position: {
-      x:0,
-      y:0
-    }
-  }
+      x: 0,
+      y: 0,
+    },
+  },
 };
